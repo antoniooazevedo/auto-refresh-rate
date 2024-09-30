@@ -1,0 +1,15 @@
+[Unit]
+Description=Automatically change the refresh rate of the monitor based on it's charging state
+After=display-manager.service
+Requires=display-manager.service
+
+[Service]
+ExecStart=/usr/local/bin/auto_rr.sh
+Environment="DISPLAY=:0"
+Environment="XAUTHORITY=/home/antonio/.Xauthority"
+Restart=on-failure
+User=antonio
+ExecStartPre=/bin/sleep 10
+
+[Install]
+WantedBy=multi-user.target
